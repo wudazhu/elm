@@ -10,8 +10,15 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
-
+    proxyTable: {
+      '/restapi':{  //这里是需要匹配的路径，如果匹配上了，则代理到目标服务器上
+        target:'https://h5.ele.me', //目标服务器
+        changeOrigin:true,   //开启代理
+        pathRewrite:{'^/restapi':'/restapi' }   //对访问路径进行替换操作
+      }
+    },
+    // https://h5.ele.me/restapi/shopping/openapi/entries?latitude=39.90469&longitude=116.407173&templates[]=main_template&templates[]=favourable_template&templates[]=svip_template
+    
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined

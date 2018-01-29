@@ -1,12 +1,14 @@
-html,body{width:100%;height: 100%;}
+html,body{height: 100%;}
 *{box-sizing: border-box;margin:0;padding:0;}
-html{font-size: 31.25vw;}
+html{font-size: 31.25vw;overflow: hidden}
 li{list-style: none}
+a{text-decoration: none;color:#000;}
 #app{display: flex;flex-direction: column;height: 100%;font-size:16px;}
-.header{width:100%;height: 0.5rem;background: #00a7ff;display: flex;justify-content: space-between;align-items: center;
-color:#fff;display: flex;justify-content: space-between;align-items: center;padding:0 0.08rem;}
+.header{width:100%;min-height: 0.5rem;background: #00a7ff;display: flex;justify-content: space-between;align-items: center;
+color:#fff;display: flex;justify-content: space-between;align-items: center;padding:0.06rem 0.1rem;}
 .section{flex: 1;overflow-y: auto;}
 .footer{height:0.5rem;border-top:1px solid #333;}
 .footer ul{display: flex; justify-content: space-around;overflow: hidden}
 .footer ul li{display: flex; height: 0.5rem;width:25%; flex-direction: column; justify-content: center; 
-    align-items: center;color:#8e8e93}
+align-items: center;color:#8e8e93;font-size:12px;}
+.iconfont{font-size:24px;}

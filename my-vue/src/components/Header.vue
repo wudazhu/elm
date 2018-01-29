@@ -1,6 +1,6 @@
 <template>
 <div>
-    <span><</span>
+    <span><i class="icon iconfont icon-zuojiantou"></i></span>
    <span>{{msg}}</span>
    <span></span>
     </div>
