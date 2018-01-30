@@ -1,9 +1,13 @@
 html,body{height: 100%;}
 *{box-sizing: border-box;margin:0;padding:0;}
+input,button{
+	outline: none;
+}
 html{font-size: 31.25vw;overflow: hidden}
 li{list-style: none}
 a{text-decoration: none;color:#000;}
 #app{display: flex;flex-direction: column;height: 100%;font-size:16px;}
+
 
 .header{width:100%;min-height: 0.5rem;background: #00a7ff;color:#fff;display: flex;justify-content: space-between;align-items: center;padding:0.06rem 0.1rem;}
 
