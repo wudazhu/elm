@@ -11,7 +11,7 @@ export default {
   name: 'Header',
   data () {
     return {
-      msg: '头部组件'
+      msg: ''
     }
     
   },

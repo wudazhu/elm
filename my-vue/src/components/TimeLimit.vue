@@ -41,7 +41,7 @@
 	}
 </script>
 
-<style>	
+<style scoped>	
 	.time_limit{
 		margin-bottom: 0.1rem;
 		overflow: hidden;
