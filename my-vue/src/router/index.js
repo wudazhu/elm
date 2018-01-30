@@ -4,6 +4,7 @@ import Index from '@/components/Index'
 import Find from '@/components/find'
 import Mine from '@/components/mine'
 import Login from '@/components/login'
+import Indent from '@/components/indent'
 
 Vue.use(Router)
 
@@ -19,6 +20,11 @@ export default new Router({
       path: '/find',
       name: 'find',
       component: Find
+    },
+    {
+      path: '/indent',
+      name: 'indent',
+      component: Indent
     },
     {
       path: '/mine',

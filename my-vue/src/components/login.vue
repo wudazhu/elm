@@ -99,7 +99,9 @@
 	.register div>.regard{
 		text-align: center;
 		font-size: 0.1rem;
-		color: #999;
 		margin: 0 auto;
+	}
+	.register div>.regard a{
+		color: #999;
 	}
 </style>               
