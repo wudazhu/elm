@@ -1,6 +1,6 @@
 <template>
 	<div class="app">
-	    <Header class="header"/>
+	    <div class="header"><i><</i><p>发现</p><span></span></div>
 	    <div class="section">
 	    	<ul class="activity">
 		    	<li v-for="item in list">
@@ -54,6 +54,7 @@ export default {
 </script>
 
 <style scoped>
+	
 	.app{
 		display: flex;
 		flex-direction: column;
