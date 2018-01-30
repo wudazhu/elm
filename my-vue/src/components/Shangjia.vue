@@ -1,6 +1,8 @@
 <template>
 <div>
-      <div class="dian" v-for="item in list">
+    <div id="container">
+         <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom"  ref="loadmore">
+      <div class="dian" v-for="item in list" v-lazy.container="item" style="font-size:12px">
              <div class="shang">
                  <div class="img"><img :src="'//fuss10.elemecdn.com/'+item.restaurant.image_path +'.'+item.restaurant.image_path.split('').slice(32,).join('')"/></div>
                  <div class="you">
@@ -35,23 +37,23 @@
 
              <div class="xia">
                  <p class="yi">
-                     <span><img :src="'//fuss10.elemecdn.com/'+item.restaurant.recommend.image_hash +'.png'"/></span>
+                     <!-- <span><img :src="'//fuss10.elemecdn.com/'+item.restaurant.recommend.image_hash +'.png'"/></span> -->
                     <span class="ren">{{item.restaurant.recommend.reason}}</span>
                  </p>
                  <p class="er">
                      <i>
                     <span class="shou">首</span>
-                    <span>{{list[0].restaurant.activities[0].description}}</span>
+                    <span>{{item.restaurant.activities[0].description}}</span>
                     </i>
                     <i>4个活动<i class="icon iconfont icon-sanjiaodown"></i></i>
                 </p>
                 <p>
                     <span class="jian">减</span>
-                    <span>{{list[0].restaurant.activities[1].description}}</span>
+                    <span>{{item.restaurant.activities[1].description}}</span>
                 </p>
-
-
              </div>
+          </div>
+          </mt-loadmore>
       </div>
  </div>   
 </template>
@@ -65,19 +67,49 @@ export default {
   data () {
     return {
        list:null,
-       display:true,
+       offset:-8,
+      loading:false,
+ 
     }
   },
   mounted (){
-    var that=this;
-     console.log(that);
-      axios.get('/restapi/shopping/v3/restaurants?latitude=39.90469&longitude=116.407173&offset=0&limit=8&extras[]=activities&extras[]=tags&extra_filters=home&rank_id=&terminal=h5')
-      .then(function (response) {
+
+     console.log(this);
+      axios.get(`/restapi/shopping/v3/restaurants?latitude=39.90469&longitude=116.407173&offset=${this.offset+8}&limit=8&extras[]=activities&extras[]=tags&extra_filters=home&rank_id=&terminal=h5`)
+     .then((response)=>{
            console.log(response);
-           that.list=response.data.items;
+           this.offset+=8;
+           this.list=response.data.items;
          })
   },
+  methods: {
+    loadTop() {
+      console.log("loadTop");
+      setTimeout(() => {
+        Toast('数据重新加载完成');
+        this.$refs.loadmore.onTopLoaded();
+      }, 3000)
+    },
+    loadBottom() {
+         setTimeout(() => {
+        Toast('数据重新加载完成');
+        // this.allLoaded = true;// 若数据已全部获取完毕
+        this.$refs.loadmore.onBottomLoaded();
 
+            if(this.loading){
+              return
+		  }
+		  this.loading=true
+         axios.get(`/restapi/shopping/v3/restaurants?latitude=39.90469&longitude=116.407173&offset=${this.offset+8}&limit=8&extras[]=activities&extras[]=tags&extra_filters=home&rank_id=&terminal=h5`)
+     .then((response)=>{
+           console.log(response);
+           this.offset+=8;
+           this.list=this.list.concat(response.data.items)
+           this.loading=false
+         })
+         },3000)
+    }
+    }
 
 }
 </script>
@@ -107,9 +139,17 @@ font-style: normal;line-height:0.17rem}
 .xia p{height:0.16rem;margin-top:0.08rem}
 .xia p span img{height:0.1rem;}
 .xia p .ren{font-size:12px;color:orangered}
-.xia .yi{border-bottom:1px solid #999;height:0.25rem;line-height:0.25rem}
+.xia .yi{border-bottom:1px solid #999;}
 .xia p .shou{background:green;color:#fff;padding:0 0.02rem;border-radius: 0.02rem}
 .xia .er{display: flex;justify-content: space-between}
 .xia .er i .icon{font-size:12px;}
 .xia p .jian{background:red;color:#fff;padding:0 0.02rem;border-radius: 0.02rem}
+
+.dian[lazy=loading] {
+  width: 100%;
+  font-size:12px;color:#666;
+  height:200px;
+ line-height: 200px;
+  margin: auto;
+}
 </style>

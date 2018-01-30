@@ -73,7 +73,7 @@ export default {
 				var geoc = new BMap.Geocoder();  
 			geoc.getLocation(r.point, function(rs){
 				var addComp = rs.addressComponents;
-				alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+				// alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
 				that.city = addComp.city;
         that.district=addComp.district;
         that.street=addComp.street;
