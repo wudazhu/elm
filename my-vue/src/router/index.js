@@ -8,6 +8,7 @@ import Liebiao from '@/components/liebiao'
 
 import Mine from '@/components/mine'
 import Login from '@/components/login'
+import Indent from '@/components/indent'
 
 
 Vue.use(Router)
@@ -26,9 +27,14 @@ export default new Router({
       component: Find
     },
     {
+      path: '/indent',
+      name: 'indent',
+      component: Indent
+    },
+    {
       path:'/liebiao/:fid',
       name:'Liebiao',
-      component:Liebiao,
+     component:Liebiao,
     },
     {
       path: '/mine',

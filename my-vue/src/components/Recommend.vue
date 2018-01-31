@@ -8,7 +8,7 @@
 			<dd v-for="item in list">
 				<img :src="'https://fuss10.elemecdn.com/'+item.food.image_path+'.jpeg'" />
 				<b>{{item.food.name}}</b>
-				<p><span>月售{{item.food.month_sales}}份</span><span>好评率{{item.food.satisfy_rate}}%</span></p>
+				<p><span>月售{{item.food.month_sales}}份</span>&nbsp;&nbsp;&nbsp;<span>好评率{{item.food.satisfy_rate}}%</span></p>
 				<p class="price"><span>￥<i>{{item.food.price}}</i></span><del>￥{{item.food.original_price}}</del></p>
 				<p>{{item.food.restaurant_name}}</p>
 			</dd>
@@ -107,5 +107,7 @@
 		line-height: 0.45rem;
 		color: #999;
 		font-size: 0.12rem;
+		background: #fff;
 	}
+
 </style>
