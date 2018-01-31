@@ -5,6 +5,7 @@ import Find from '@/components/find'
 
 import Liebiao from '@/components/liebiao'
 
+
 import Mine from '@/components/mine'
 import Login from '@/components/login'
 
@@ -27,7 +28,7 @@ export default new Router({
     {
       path:'/liebiao/:fid',
       name:'Liebiao',
-      component:Liebiao
+      component:Liebiao,
     },
     {
       path: '/mine',
