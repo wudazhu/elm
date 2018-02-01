@@ -4,7 +4,7 @@ import Index from '@/components/Index'
 import Find from '@/components/find'
 
 import Liebiao from '@/components/liebiao'
-
+import Xqing from '@/components/Xqing'
 
 import Mine from '@/components/mine'
 import Login from '@/components/login'
@@ -45,6 +45,11 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/xqing/:fids',
+      name: 'Xqing',
+      component: Xqing
     },
 
   ]

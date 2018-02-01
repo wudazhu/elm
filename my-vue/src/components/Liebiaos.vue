@@ -43,13 +43,13 @@
                  <p class="er">
                      <i>
                     <span class="shou">首</span>
-                    <span>{{item.restaurant.activities[0].description}}</span>
+                    <span>{{list[0].restaurant.activities[0].name}}</span>
                     </i>
                     <i>4个活动<i class="icon iconfont icon-sanjiaodown"></i></i>
                 </p>
                 <p>
                     <span class="jian">折</span>
-                    <span>{{item.restaurant.activities[1].name}}</span>
+                    <span>{{list[1].restaurant.activities[1].name}}</span>
                 </p>
              
              </div>

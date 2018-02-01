@@ -2,7 +2,8 @@
 <div>
     <div id="container">
          <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom"  ref="loadmore">
-      <div class="dian" v-for="item in list" v-lazy.container="item" style="font-size:12px">
+      <div class="dian" v-for="item in list" v-lazy.container="item" style="font-size:12px"  @click="gotoDetail(item.restaurant.id)">
+          <!-- <router-link style="display:block;"> -->
              <div class="shang">
                  <div class="img"><img :src="'//fuss10.elemecdn.com/'+item.restaurant.image_path +'.'+item.restaurant.image_path.split('').slice(32,).join('')"/></div>
                  <div class="you">
@@ -52,6 +53,7 @@
                     <span>{{list[0].restaurant.activities[1].description}}</span>
                 </p>
              </div>
+          <!-- </router-link> -->
           </div>
           </mt-loadmore>
       </div>
@@ -108,7 +110,11 @@ export default {
            this.loading=false
          })
          },3000)
-    }
+    },
+    gotoDetail(id) {  //获取id
+			console.log(this);
+			this.$router.history.push({name:'Xqing', params:{fids: id}});
+		}
     }
 
 }
