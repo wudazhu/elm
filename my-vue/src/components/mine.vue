@@ -1,6 +1,6 @@
 <template>
 	<div class="app">
-	    <div class="header"><i class="icon iconfont icon-zuojiantou"></i><p>我的发现</p><span></span></div>
+	    <div class="header"><i class="icon iconfont icon-zuojiantou" @click=" $router.go(-1)"></i><p>我的发现</p><span></span></div>
 	    <div class="section">
 	    	<div class="login">
 	    		<router-link :to="{name:'login'}">

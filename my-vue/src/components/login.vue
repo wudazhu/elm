@@ -16,9 +16,10 @@
 			<p class="regard"><a>关于我们</a></p>
 		</div>
 		<div class="pass" v-else>
-			<input type="text" placeholder="手机/邮箱/用户名" class="username" />
-			<input type="password" placeholder="密码" class="pwd" />
-			<input type="submit" value="登录" class="reg" />
+			<input type="text" placeholder="手机/邮箱/用户名" class="username" v-model="username" />
+			<input type="password" placeholder="密码" class="pwd" v-model="pwd"  />
+			<mt-switch v-model="conceal"></mt-switch>
+			<input type="submit" value="登录" class="reg" @click="regist()"/>
 			<p class="regard"><a>关于我们</a></p>
 		</div>
 	</div>
@@ -26,14 +27,33 @@
 
 <script>
 	import axios from 'axios';
+	import { Switch } from 'mint-ui';
+
 	export default {
 	  name: 'login',
 	  data: function() {
 		return {
 			login:true,
+			conceal:false,
+			username:"",
+			pwd:"",
 		}
 	  },
-	  
+	  methods:{
+	  	regist:	function(){
+	  		axios.post('/api/regist', {
+			    username: this.username,
+			    pwd: this.pwd
+			})
+			.then(function (response) {
+			    console.log(response);
+			})
+			.catch(function (error) {
+			    console.log(error);
+			});
+			val
+	  	}
+	  }
 	  
 	}
 	
@@ -73,6 +93,11 @@
 		border: 1px solid #ddd;
 		border-radius: 0.04rem;
 		padding-left: 0.1rem;
+	}
+	.register div label{
+		position: absolute;
+		right: 0.1rem;
+		top: 0.56rem;
 	}
 	.register div button{
 		background: #fff;
