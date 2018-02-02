@@ -2,8 +2,7 @@
 <div>
     <div id="container">
          <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom"  ref="loadmore">
-      <div class="dian" v-for="item in list" v-lazy.container="item" style="font-size:12px"  @click="gotoDetail(item.restaurant.id)">
-          <!-- <router-link style="display:block;"> -->
+      <div class="dian" v-for="item in list" v-lazy.container="item" style="font-size:12px">
              <div class="shang">
                  <div class="img"><img :src="'//fuss10.elemecdn.com/'+item.restaurant.image_path +'.'+item.restaurant.image_path.split('').slice(32,).join('')"/></div>
                  <div class="you">
@@ -44,20 +43,20 @@
                  <p class="er">
                      <i>
                     <span class="shou">首</span>
-                    <span>{{list[0].restaurant.activities[0].description}}</span>
+                    <span>{{list[0].restaurant.activities[0].name}}</span>
                     </i>
                     <i>4个活动<i class="icon iconfont icon-sanjiaodown"></i></i>
                 </p>
                 <p>
-                    <span class="jian">减</span>
-                    <span>{{list[0].restaurant.activities[1].description}}</span>
+                    <span class="jian">折</span>
+                    <span>{{list[1].restaurant.activities[1].name}}</span>
                 </p>
+             
              </div>
-          <!-- </router-link> -->
           </div>
           </mt-loadmore>
       </div>
- </div>   
+ </div>  
 </template>
 
 <script>
@@ -65,26 +64,24 @@
 import axios from 'axios';
 import { Toast } from 'mint-ui';
 export default {
-  name:'shangjia',
+  name:'liebiaos',
   data () {
     return {
        list:null,
-       offset:0,
-      loading:false,
- 
+        offset:0,
     }
   },
-  mounted (){
-
+   mounted (){
+  
      console.log(this);
-      axios.get(`/restapi/shopping/v3/restaurants?latitude=39.90469&longitude=116.407173&offset=${this.offset}&limit=8&extras[]=activities&extras[]=tags&extra_filters=home&rank_id=&terminal=h5`)
-     .then((response)=>{
+      axios.get(`restapi/shopping/v3/restaurants?latitude=39.90469&longitude=116.407173&keyword=&offset=${this.offset}&limit=8&extras[]=activities&extras[]=tags&terminal=h5&rank_id=&restaurant_category_ids[]=209&restaurant_category_ids[]=212&restaurant_category_ids[]=213&restaurant_category_ids[]=214&restaurant_category_ids[]=215&restaurant_category_ids[]=216&restaurant_category_ids[]=217&restaurant_category_ids[]=219&restaurant_category_ids[]=265&restaurant_category_ids[]=266&restaurant_category_ids[]=267&restaurant_category_ids[]=268&restaurant_category_ids[]=269&restaurant_category_ids[]=221&restaurant_category_ids[]=222&restaurant_category_ids[]=223&restaurant_category_ids[]=224&restaurant_category_ids[]=225&restaurant_category_ids[]=226&restaurant_category_ids[]=227&restaurant_category_ids[]=228&restaurant_category_ids[]=231&restaurant_category_ids[]=232&restaurant_category_ids[]=263&restaurant_category_ids[]=218&restaurant_category_ids[]=234&restaurant_category_ids[]=235&restaurant_category_ids[]=236&restaurant_category_ids[]=237&restaurant_category_ids[]=238&restaurant_category_ids[]=211&restaurant_category_ids[]=229&restaurant_category_ids[]=230&restaurant_category_ids[]=264`)
+       .then((response)=>{
            console.log(response);
-           this.offset+=8;
            this.list=response.data.items;
+  
          })
   },
-  methods: {
+   methods: {
     loadTop() {
       console.log("loadTop");
       setTimeout(() => {
@@ -102,20 +99,19 @@ export default {
               return
 		  }
 		  this.loading=true
-         axios.get(`/restapi/shopping/v3/restaurants?latitude=39.90469&longitude=116.407173&offset=${this.offset}&limit=8&extras[]=activities&extras[]=tags&extra_filters=home&rank_id=&terminal=h5`)
+         axios.get(`restapi/shopping/v3/restaurants?latitude=39.90469&longitude=116.407173&keyword=&offset=${this.offset}&limit=8&extras[]=activities&extras[]=tags&terminal=h5&rank_id=&restaurant_category_ids[]=209&restaurant_category_ids[]=212&restaurant_category_ids[]=213&restaurant_category_ids[]=214&restaurant_category_ids[]=215&restaurant_category_ids[]=216&restaurant_category_ids[]=217&restaurant_category_ids[]=219&restaurant_category_ids[]=265&restaurant_category_ids[]=266&restaurant_category_ids[]=267&restaurant_category_ids[]=268&restaurant_category_ids[]=269&restaurant_category_ids[]=221&restaurant_category_ids[]=222&restaurant_category_ids[]=223&restaurant_category_ids[]=224&restaurant_category_ids[]=225&restaurant_category_ids[]=226&restaurant_category_ids[]=227&restaurant_category_ids[]=228&restaurant_category_ids[]=231&restaurant_category_ids[]=232&restaurant_category_ids[]=263&restaurant_category_ids[]=218&restaurant_category_ids[]=234&restaurant_category_ids[]=235&restaurant_category_ids[]=236&restaurant_category_ids[]=237&restaurant_category_ids[]=238&restaurant_category_ids[]=211&restaurant_category_ids[]=229&restaurant_category_ids[]=230&restaurant_category_ids[]=264`)
      .then((response)=>{
            console.log(response);
            this.offset+=8;
            this.list=this.list.concat(response.data.items)
+           
            this.loading=false
          })
          },3000)
-    },
-    gotoDetail(id) {  //获取id
-			console.log(this);
-			this.$router.history.push({name:'Xqing', params:{fids: id}});
-		}
     }
+    }
+
+
 
 }
 </script>
@@ -151,11 +147,4 @@ font-style: normal;line-height:0.17rem}
 .xia .er i .icon{font-size:12px;}
 .xia p .jian{background:red;color:#fff;padding:0 0.02rem;border-radius: 0.02rem}
 
-/* .dian[lazy=loading] {
-  width: 100%;
-  font-size:12px;color:#666;
-  height:200px;
- line-height: 200px;
-  margin: auto;
-} */
 </style>
